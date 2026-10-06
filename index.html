@@ -1,64 +1,340 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ultimate Study — Installation</title>
-<meta name="description" content="Installe Ultimate Study — Dictionnaire.">
-<style>
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:Inter,Arial,sans-serif;min-height:100vh;background:#0f172a;color:#f8fafc;display:flex;align-items:center;justify-content:center;padding:24px}
-.container{width:100%;max-width:760px;text-align:center}
-.logo{width:80px;height:80px;margin:0 auto 24px;border-radius:22px;background:#2563eb;display:flex;align-items:center;justify-content:center;font-size:38px;box-shadow:0 15px 40px rgba(37,99,235,.3)}
-h1{font-size:clamp(32px,6vw,52px);line-height:1.1;margin-bottom:16px}
-.subtitle{color:#94a3b8;font-size:18px;line-height:1.6;max-width:600px;margin:0 auto 40px}
-.card{background:#1e293b;border:1px solid #334155;border-radius:20px;padding:30px;margin-bottom:20px;text-align:left}
-.card h2{font-size:22px;margin-bottom:12px}.card p{color:#94a3b8;line-height:1.6;margin-bottom:20px}
-.step{display:flex;gap:16px;align-items:flex-start;margin:20px 0}
-.number{flex-shrink:0;width:34px;height:34px;border-radius:50%;background:#2563eb;display:flex;align-items:center;justify-content:center;font-weight:bold}
-.step-content strong{display:block;margin-bottom:5px}.step-content span{color:#94a3b8;line-height:1.5}
-.buttons{display:flex;flex-direction:column;gap:12px;margin-top:25px}
-.button{display:block;width:100%;padding:16px 20px;border-radius:12px;text-decoration:none;text-align:center;font-weight:700;font-size:16px;transition:transform .15s,opacity .15s}
-.button:hover{transform:translateY(-2px);opacity:.92}
-.primary{background:#2563eb;color:white}.secondary{background:#334155;color:white}
-.warning{background:#422006;border:1px solid #78350f;color:#fed7aa;padding:18px;border-radius:12px;margin-top:20px;line-height:1.5;font-size:14px}
-footer{color:#64748b;font-size:13px;margin-top:30px}
-code{background:#0f172a;padding:3px 7px;border-radius:6px;font-size:13px}
-@media(max-width:600px){.card{padding:22px}.subtitle{font-size:16px}}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ultimate Study — Installation</title>
+  <meta name="description" content="Installe Ultimate Study — Dictionnaire et outils d'étude directement dans ton navigateur." />
+  <style>
+    :root {
+      --bg: #0f172a;
+      --bg-soft: #111827;
+      --panel: rgba(15, 23, 42, 0.88);
+      --panel-alt: #1e293b;
+      --line: rgba(148, 163, 184, 0.2);
+      --text: #f8fafc;
+      --muted: #cbd5e1;
+      --subtle: #94a3b8;
+      --primary: #2563eb;
+      --primary-strong: #1d4ed8;
+      --secondary: #334155;
+      --warning-bg: rgba(120, 53, 15, 0.28);
+      --warning-border: rgba(251, 146, 60, 0.45);
+      --warning-text: #fdba74;
+      --shadow: 0 25px 60px rgba(15, 23, 42, 0.45);
+      --radius: 22px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Inter, "Segoe UI", Arial, sans-serif;
+      background:
+        radial-gradient(circle at top, rgba(37, 99, 235, 0.32), transparent 28%),
+        linear-gradient(180deg, #0b1220 0%, #0f172a 100%);
+      color: var(--text);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 28px 18px;
+    }
+
+    .container {
+      width: min(100%, 760px);
+      text-align: center;
+    }
+
+    .logo {
+      width: 82px;
+      height: 82px;
+      margin: 0 auto 22px;
+      border-radius: 22px;
+      background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 40px;
+      box-shadow: 0 18px 40px rgba(37, 99, 235, 0.34);
+      transform: translateY(0);
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-4px); }
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2.2rem, 6vw, 3.5rem);
+      line-height: 1.08;
+      letter-spacing: -0.05em;
+      font-weight: 800;
+    }
+
+    .subtitle {
+      margin: 18px auto 32px;
+      max-width: 560px;
+      color: var(--subtle);
+      font-size: clamp(1.02rem, 2.3vw, 1.18rem);
+      line-height: 1.6;
+    }
+
+    .card {
+      background: rgba(30, 41, 59, 0.9);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: clamp(22px, 4vw, 30px);
+      margin-bottom: 20px;
+      box-shadow: var(--shadow);
+      text-align: left;
+      backdrop-filter: blur(8px);
+    }
+
+    .card h2 {
+      margin: 0 0 10px;
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      line-height: 1.25;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--subtle);
+      line-height: 1.7;
+      font-size: 1rem;
+    }
+
+    .steps {
+      margin-top: 22px;
+    }
+
+    .step {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 8px 0;
+    }
+
+    .number {
+      flex-shrink: 0;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      box-shadow: 0 10px 18px rgba(37, 99, 235, 0.28);
+    }
+
+    .step-content {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .step-content strong {
+      display: block;
+      margin: 0 0 6px;
+      font-size: 1.04rem;
+      line-height: 1.4;
+    }
+
+    .step-content span {
+      color: var(--subtle);
+      line-height: 1.55;
+      display: block;
+    }
+
+    .buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      min-height: 58px;
+      padding: 15px 20px;
+      border-radius: 14px;
+      text-decoration: none;
+      text-align: center;
+      font-weight: 700;
+      font-size: 1rem;
+      transition: transform 0.18s ease, box-shadow 0.18s ease, opacity 0.18s ease, background 0.18s ease;
+      border: 1px solid transparent;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .button:hover,
+    .button:focus-visible {
+      transform: translateY(-2px);
+      opacity: 0.98;
+      outline: none;
+    }
+
+    .button:active {
+      transform: translateY(0);
+    }
+
+    .primary {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-strong) 100%);
+      color: #fff;
+      box-shadow: 0 18px 30px rgba(37, 99, 235, 0.28);
+    }
+
+    .secondary {
+      background: rgba(51, 65, 85, 0.95);
+      color: #fff;
+      border-color: rgba(148, 163, 184, 0.2);
+      box-shadow: 0 12px 24px rgba(15, 23, 42, 0.24);
+    }
+
+    .warning {
+      margin-top: 22px;
+      background: var(--warning-bg);
+      border: 1px solid var(--warning-border);
+      color: var(--warning-text);
+      border-radius: 12px;
+      padding: 16px 18px;
+      line-height: 1.6;
+      font-size: 0.95rem;
+    }
+
+    .warning strong {
+      color: #fed7aa;
+    }
+
+    code {
+      font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+      background: rgba(15, 23, 42, 0.9);
+      color: #e2e8f0;
+      padding: 3px 8px;
+      border-radius: 8px;
+      font-size: 0.9em;
+    }
+
+    footer {
+      margin-top: 26px;
+      color: #94a3b8;
+      font-size: 0.84rem;
+      letter-spacing: 0.02em;
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 22px 14px;
+      }
+
+      .card {
+        padding: 20px 18px;
+      }
+
+      .step {
+        gap: 12px;
+      }
+
+      .number {
+        width: 30px;
+        height: 30px;
+        font-size: 0.92rem;
+      }
+
+      .button {
+        min-height: 54px;
+      }
+    }
+  </style>
 </head>
 <body>
-<main class="container">
-<div class="logo">📚</div>
-<h1>Ultimate Study</h1>
-<p class="subtitle">Dictionnaire et outils d'étude directement dans ton navigateur.</p>
+  <main class="container">
+    <div class="logo" aria-label="Logo Ultimate Study">📚</div>
+    <h1>Ultimate Study</h1>
+    <p class="subtitle">Dictionnaire et outils d'étude directement dans ton navigateur.</p>
 
-<section class="card">
-<h2>🚀 Installer l'extension</h2>
-<p>Pour installer l'extension sans activer le mode développeur, utilise CRXLauncher.</p>
+    <section class="card">
+      <h2>🚀 Installer l'extension</h2>
+      <p>Pour installer l'extension sans activer le mode développeur, utilise CRXLauncher.</p>
 
-<div class="step"><div class="number">1</div><div class="step-content"><strong>Installe CRXLauncher</strong><span>Installe l'outil depuis le Chrome Web Store.</span></div></div>
-<div class="step"><div class="number">2</div><div class="step-content"><strong>Télécharge Ultimate Study</strong><span>Télécharge le fichier <code>.crx</code> de l'extension.</span></div></div>
-<div class="step"><div class="number">3</div><div class="step-content"><strong>Ouvre le fichier avec CRXLauncher</strong><span>Lance CRXLauncher et sélectionne le fichier téléchargé.</span></div></div>
-<div class="step"><div class="number">4</div><div class="step-content"><strong>Profite de l'extension 🎉</strong><span>L'extension sera disponible dans ton navigateur.</span></div></div>
+      <div class="steps">
+        <div class="step">
+          <div class="number">1</div>
+          <div class="step-content">
+            <strong>Installe CRXLauncher</strong>
+            <span>Installe l'outil depuis le Chrome Web Store.</span>
+          </div>
+        </div>
 
-<div class="buttons">
-<a class="button primary" href="https://chromewebstore.google.com/detail/crxlauncher/kiilhncajadbgbmdbdcopdpnmdhlbdle" target="_blank" rel="noopener noreferrer">📦 Installer CRXLauncher</a>
-<a class="button secondary" href="https://github.com/zjhzejhz/mon-extension/raw/refs/heads/main/Ultimate_Study_DICTIONNAIRE_LETTRES_ROUXLS_PLUS_GRAND.crx">⬇️ Télécharger Ultimate Study</a>
-</div>
+        <div class="step">
+          <div class="number">2</div>
+          <div class="step-content">
+            <strong>Télécharge Ultimate Study</strong>
+            <span>Télécharge le fichier <code>.crx</code> de l'extension.</span>
+          </div>
+        </div>
 
-<div class="warning">⚠️ <strong>Important :</strong> les mises à jour de cette version peuvent nécessiter de télécharger une nouvelle version du fichier <code>.crx</code>.</div>
-</section>
+        <div class="step">
+          <div class="number">3</div>
+          <div class="step-content">
+            <strong>Ouvre le fichier avec CRXLauncher</strong>
+            <span>Lance CRXLauncher et sélectionne le fichier téléchargé.</span>
+          </div>
+        </div>
 
-<section class="card">
-<h2>❓ Besoin d'aide ?</h2>
-<p>Si l'installation ne fonctionne pas, vérifie que CRXLauncher est installé puis réessaie d'ouvrir le fichier <code>.crx</code>.</p>
-<div class="buttons">
-<a class="button secondary" href="https://github.com/zjhzejhz/mon-extension" target="_blank" rel="noopener noreferrer">💻 Voir le projet sur GitHub</a>
-</div>
-</section>
+        <div class="step">
+          <div class="number">4</div>
+          <div class="step-content">
+            <strong>Profite de l'extension 🎉</strong>
+            <span>L'extension sera disponible dans ton navigateur.</span>
+          </div>
+        </div>
+      </div>
 
-<footer>Ultimate Study · Extension gratuite</footer>
-</main>
+      <div class="buttons">
+        <a
+          class="button primary"
+          href="https://chromewebstore.google.com/detail/crxlauncher/kiilhncajadbgbmdbdcopdpnmdhlbdle"
+          target="_blank"
+          rel="noopener noreferrer"
+        >📦 Installer CRXLauncher</a>
+
+        <a
+          class="button secondary"
+          href="https://github.com/zjhzejhz/mon-extension/raw/refs/heads/main/Ultimate_Study_DICTIONNAIRE_LETTRES_ROUXLS_PLUS_GRAND.crx"
+          target="_blank"
+          rel="noopener noreferrer"
+          download="Ultimate_Study_DICTIONNAIRE_LETTRES_ROUXLS_PLUS_GRAND.crx"
+        >⬇️ Télécharger Ultimate Study</a>
+      </div>
+
+      <div class="warning">
+        <strong>Important :</strong> cette méthode utilise un fichier <code>.crx</code>. Les mises à jour peuvent nécessiter le téléchargement d'une nouvelle version de l'extension.
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>❓ Besoin d'aide ?</h2>
+      <p>Si tu rencontres un problème pendant l'installation, vérifie que CRXLauncher est bien installé puis réessaie d'ouvrir le fichier <code>.crx</code>.</p>
+
+      <div class="buttons">
+        <a
+          class="button secondary"
+          href="https://github.com/zjhzejhz/mon-extension"
+          target="_blank"
+          rel="noopener noreferrer"
+        >💻 Voir le projet sur GitHub</a>
+      </div>
+    </section>
+
+    <footer>Ultimate Study · Extension gratuite</footer>
+  </main>
 </body>
 </html>
